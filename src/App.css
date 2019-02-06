@@ -1,0 +1,26 @@
+body {
+  background-color: grey
+}
+
+.Header {
+  height: 100%
+}
+
+.Content {
+  min-height:800px;
+  height: 100%;
+  padding: 50px;
+  background-color: lightslategrey
+}
+
+.Content-box {
+  min-height: 700px;
+  padding: 24px;
+  background-color:white
+}
+
+.Footer {
+  height: 20px;
+  background-color: grey;
+  text-align: center
+}
