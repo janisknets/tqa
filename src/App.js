@@ -4,7 +4,7 @@ import { Layout } from 'antd'
 
 import Navigation from './modules/navigation/navigation'
 import Home from './modules/home/home'
-import Questions from './modules/questions/questions'
+import Questions from './modules/questions/displayQuestion/questions'
 
 import './App.css'
 

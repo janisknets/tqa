@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import { Radio, Form, Input, Button, Checkbox } from 'antd'
 
-import Code from '../code/code'
-
-let questions = require('../../database/questions.json')
+import Code from 'modules/code/code'
+import { getQuestions } from 'redux/actions/questionsActions';
 
 class Questions extends Component {
     state = {
@@ -11,10 +11,11 @@ class Questions extends Component {
         correct: 0,
         checked: {}
     }
-    constructor () {
-        super();
-        this.questions = Object.values(questions)
+
+    componentDidMount() {
+        this.props.getQuestions()
     }
+
     resetQuestions = () => {
         this.setState({current: 0, correct: 0, checked: {}})
     }
@@ -31,7 +32,7 @@ class Questions extends Component {
           if (err) {
             console.error(err);
           }
-          const question = this.questions[this.state.current];
+          const question = this.props.questions[this.state.current];
           let correct = this.state.correct;
           let current = this.state.current + 1;
           switch (question.type) {
@@ -69,7 +70,7 @@ class Questions extends Component {
     
     getNextQuestion = (input) => {
         const { getFieldDecorator } = this.props.form;
-        let question = this.questions[input]
+        let question = this.props.questions[input]
         if (!question) {
             return <div>Nothing to ask</div>
         }
@@ -123,4 +124,16 @@ class Questions extends Component {
     }
 }
 
-export default Form.create({ name: 'questions' })(Questions)
+const mapStateToProps = state => {
+    return {
+        questions: Object.values(state.questions.values)
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        getQuestions: () => dispatch(getQuestions())
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Form.create({ name: 'questions' })(Questions))

@@ -1,5 +1,8 @@
 const presets = [
   [
+    "es2015", {
+      "modules":false
+    },
     "@babel/env",
     {
       targets: {
@@ -13,4 +16,9 @@ const presets = [
   ],
 ];
 
-module.exports = { presets };
+const plugins = [
+  "transform-runtime", 
+  {"polyfill": false}
+]
+
+module.exports = { presets, plugins };
