@@ -43,7 +43,7 @@ class DynamicRedux {
   post(payload) {
     const cfg = {
       method: 'post',
-      url: `${this.baseURN}/`,
+      url: `${this.baseURN}`,
       data: payload
     }
     return {
@@ -93,8 +93,8 @@ class DynamicRedux {
       if (action.type === `GET_${this.name}_ALL_FULFILLED`) {
         // let values = {}
         // state.values.forEach(x => values[x._id = {...x}])
-        let values = { ...state.values}
-        action.response.payload.data.forEach(x => values[x._id] = {...x})
+        let values = { ...state.values }
+        action.payload.data.forEach(x => values[x._id] = {...x})
         return {
           ...state,
           status: (state.working > 0 ? state.working - 1 : 0),
@@ -103,8 +103,8 @@ class DynamicRedux {
       } else if (action.type === `GET_${this.name}_FULFILLED` ||
                  action.type === `POST_${this.name}_FULFILLED` ||
                  action.type === `PATCH_${this.name}_FULFILLED` ) {
-        let values = { ...state.values}
-        const x = action.response.payload.data
+        let values = Array.isArray(state.values) ? state.values[0] : { ...state.values}
+        const x = action.payload.data
         values[x._id] = {...x}
         return {
           ...state,
@@ -113,7 +113,7 @@ class DynamicRedux {
         }
       } else if (action.type === `DELETE_${this.name}_FULFILLED`) {
         let values = { ...state.values}
-        const x = action.response.payload.data
+        const x = action.payload.data
         delete values[x._id]
         return {
           ...state,

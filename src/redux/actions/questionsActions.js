@@ -1,12 +1,9 @@
-import API from 'helpers/API'
+import DynamicRedux from 'helpers/dynamicRedux'
 
-export function getQuestions () {
-  const cfg = {
-    method: 'get',
-    url: `questions`,
-  }
-  return {
-    type: 'GET_QUESTIONS',
-    payload: API.call(cfg)
-  }
-}
+const dynamicRedux = new DynamicRedux('questions')
+
+export const getQuestions = () => dynamicRedux.get()
+export const getQuestion = (id) => dynamicRedux.getOne(id)
+export const patchQuestion = (id, payload) => dynamicRedux.patch(id, payload)
+export const postQuestion = (payload) => dynamicRedux.post(payload)
+export const deleteQuestion = (id) => dynamicRedux.delete(id)

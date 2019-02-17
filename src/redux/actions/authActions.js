@@ -3,7 +3,6 @@ import SHA256 from 'crypto-js/sha256'
 
 export const login = (username, password) => {
   const hashed = SHA256(password).toString()
-  console.log(password, hashed)
   const cfg = {
     method: 'post',
     url: `auth/login`,
@@ -23,14 +22,14 @@ export const register = (payload) => {
     return
   }
   const hashed =  SHA256(payload.password).toString()
-  console.log(payload.password, hashed)
   payload.hashedPassword = hashed
   delete payload.password
   const cfg = {
     method: 'post',
     url: 'auth/register',
     data: {
-      ...payload
+      ...payload,
+      level: 'admin'
     }
   }
   return {

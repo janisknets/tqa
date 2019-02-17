@@ -1,6 +1,6 @@
 import DynamicRedux from 'helpers/dynamicRedux'
 
-const dynamicRedux = new DynamicRedux('users', 'user', 'users')
+const dynamicRedux = new DynamicRedux('users')
 
 export const getUsers = () => dynamicRedux.get()
 export const getUser = (id) => dynamicRedux.getOne(id)

@@ -51,4 +51,4 @@ class registerCompoment extends React.Component {
   }
 }
 
-export default Form.create({name: 'LoginComponent'})(registerCompoment)
+export default Form.create({name: 'registerCompoment'})(registerCompoment)

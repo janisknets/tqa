@@ -1,13 +1,19 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { Button } from 'antd'
+import { Button, Card } from 'antd'
 
-const QuizComponent = ({quiz}) => <div>
-  <h2>{quiz.name} ({quiz.questionIds.length()})</h2>
-</div>
+const QuizComponent = ({quiz}) => <Card
+    title={quiz.name}
+    extra={<React.Fragment>
+      <Link to={`/quizes/${quiz._id}`}><Button>Edit</Button></Link>
+      <Link to={`/quizes/${quiz._id}/questions`}><Button>Questions ({quiz.questions && quiz.questions.length})</Button></Link>
+    </React.Fragment>}
+  >
+  <p>{quiz.description}</p>
+</Card>
 
 const QuizListComponent = ({quizes}) => <div>
-  <div><Link to='/quiz/create'><Button>Add new Quiz</Button></Link></div>
+  <div><Link to='/quizes/create'><Button>Add new Quiz</Button></Link></div>
   {
     quizes.map((quiz,i) => <QuizComponent quiz={quiz} key={`quiz-${i}`}/> )
   }

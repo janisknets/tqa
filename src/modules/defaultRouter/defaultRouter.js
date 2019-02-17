@@ -4,8 +4,7 @@ import { Route, Switch } from 'react-router-dom'
 import ProtectedRoute from 'react-router-protected-route'
 import Login from 'modules/login'
 import Register from 'modules/register'
-import Home from 'modules/home'
-import Quizes from 'modules/quizesList'
+import Protected from './protectedRouter'
 
 class DefaultRouter extends React.Component {
   render () {
@@ -16,16 +15,9 @@ class DefaultRouter extends React.Component {
         <ProtectedRoute
           isAccessible={this.props.isLoggedIn}
           redirectToPath="/login"
-          path="/home"
-          component={Home}
+          path="/*"
+          component={(props) => <Protected {...props} />}
         />
-        <ProtectedRoute
-          isAccessible={this.props.isLoggedIn}
-          redirectToPath="/login"
-          path="/quizes"
-          component={Quizes}
-        />
-        <Route path="/*" component={this.props.isLoggedIn ? Home : Login} />
       </Switch>
     </div>
   }
