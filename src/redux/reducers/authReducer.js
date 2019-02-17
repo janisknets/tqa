@@ -1,5 +1,5 @@
 export default (state = {
-  loggedIn: false,
+  isLoggedIn: false,
   token: null,
   working: 0,
   err: null

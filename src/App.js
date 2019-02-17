@@ -2,11 +2,9 @@ import React, { Component } from 'react';
 import { BrowserRouter, Route } from 'react-router-dom'
 import { Layout } from 'antd'
 
+import DefaultRouter from 'modules/defaultRouter'
+
 import Navigation from './modules/navigation/navigation'
-import Home from './modules/home/home'
-import Questions from './modules/questions/displayQuestion/questions'
-import Login from 'modules/login'
-import GameContainer from './modules/game/GameContainer'
 
 import './App.css'
 
@@ -23,12 +21,7 @@ class App extends Component {
           </Header>
           <Layout>
             <Content className="Content">
-              <div className="Content-box">
-                <Route exact path="/" component={Home} />
-                <Route path="/login" component={Login} />
-                <Route path="/questions" component={Questions} />
-                <Route path="/game" component={GameContainer} />
-              </div>
+              <Route to='/*' component={DefaultRouter} />
             </Content>
           </Layout>
           <Footer className="Footer">

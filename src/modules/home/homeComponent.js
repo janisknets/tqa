@@ -1,10 +1,9 @@
 import React, { Component } from 'react'
-import CreateQuestion from 'modules/questions/createQuestion'
 
 class Home extends Component {
     render () {
         return <div>
-            <CreateQuestion />
+          Hello World! You are logged in
         </div>
     }
 }

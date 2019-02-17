@@ -8,6 +8,8 @@ node_modules
 /.pnp
 .pnp.js
 
+/src/modules/game
+
 # testing
 /coverage
 

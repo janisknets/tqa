@@ -12,7 +12,8 @@ class LoginContainer extends React.Component {
         return
       }
       try {
-        await this.props.login(values.username, values.password)
+        this.props.login(values.username, values.password)
+          .then(() => this.props.history.push('/home'))
       } catch (error) {
         this.setState({error: error})
       }
@@ -25,13 +26,12 @@ class LoginContainer extends React.Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    login: () => dispatch(login())
+    login: (username, password) => dispatch(login(username, password))
   }
 }
 
 const mapStateToProps = state => {
   return {
-    isLoggedIn: state.auth.isLoggedIn,
     loading: state.auth.working,
     error: state.auth.err
   }

@@ -2,12 +2,14 @@ import API from 'helpers/API'
 import SHA256 from 'crypto-js/sha256'
 
 export const login = (username, password) => {
+  const hashed = SHA256(password).toString()
+  console.log(password, hashed)
   const cfg = {
     method: 'post',
     url: `auth/login`,
     data: {
       username,
-      password: SHA256(password)
+      hashedPassword: hashed
     }
   }
   return {
@@ -17,7 +19,12 @@ export const login = (username, password) => {
 }
 
 export const register = (payload) => {
-  payload.hashedPassword = SHA256(payload.password)
+  if (!payload) {
+    return
+  }
+  const hashed =  SHA256(payload.password).toString()
+  console.log(payload.password, hashed)
+  payload.hashedPassword = hashed
   delete payload.password
   const cfg = {
     method: 'post',
