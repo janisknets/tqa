@@ -1,0 +1,414 @@
+openapi: 3.0.0
+info:
+  version: "0.1-oas3"
+  title: QuizzGen
+  description: QuizzGen
+paths:
+  /users:
+    get:
+      tags: 
+      - users
+      responses:
+        '200':
+          description: Returns all users
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/user'
+    post:
+      tags: 
+        - users
+      responses:
+        '200':
+          description: Creates a new user
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/user'
+
+  /users/userId:
+    patch:
+      tags:
+      - users
+      parameters:
+      - name: userId
+        in: path
+        description: 'User ID whom to fetch'
+        allowEmptyValue: false
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Updates existing user
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/user'
+    delete:
+      tags:
+      - users
+      parameters:
+      - name: userId
+        in: path
+        description: 'User ID whom to delete'
+        allowEmptyValue: false
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Deletes existing user
+        
+  /users/self:
+    get:
+      tags: 
+      - users
+      responses:
+        '200':
+          description: Returns all users
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/user'
+  
+  /quizes:
+    get:
+      tags: 
+      - quizes
+      responses:
+        '200':
+          description: Returns all possible quizes
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/quiz'
+    post:
+      tags:
+      - quizes
+      responses:
+        '200':
+          description: 'Creates a new quiz'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/quiz'
+  /quizes/:quizId:
+    patch:
+      tags:
+      - quizes
+      parameters:
+      - name: quizId
+        in: path
+        description: 'Quiz ID which to patch to fetch'
+        allowEmptyValue: false
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: 'Creates a new quiz'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/quiz'
+    delete:
+      tags:
+      - quizes
+      parameters:
+      - name: quizId
+        in: path
+        description: 'Quiz ID which to delete'
+        allowEmptyValue: false
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Deletes existing quiz
+
+  /questions:
+    get:
+      tags: 
+      - questions
+      responses:
+        '200':
+          description: Returns all possible questions
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/question'
+    post:
+      tags:
+      - questions
+      responses:
+        '200':
+          description: 'Creates a new quiz'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/question'
+  /questions/:questionId:
+    patch:
+      tags:
+      - questions
+      parameters:
+      - name: questionId
+        in: path
+        description: 'Question ID which to patch'
+        allowEmptyValue: false
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: 'Patches an existing question'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/question'
+    delete:
+      tags:
+      - questions
+      parameters:
+      - name: questionId
+        in: path
+        description: 'Question ID which to delete'
+        allowEmptyValue: false
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Deletes existing question
+  /results:
+    get:
+      tags: 
+      - results
+      responses:
+        '200':
+          description: Returns all possible results
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/result'
+    post:
+      tags:
+      - results
+      responses:
+        '200':
+          description: 'Creates a new result'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/result'
+  /result/:resultId:
+    patch:
+      tags:
+      - results
+      parameters:
+      - name: recordId
+        in: path
+        description: 'Result ID which to patch'
+        allowEmptyValue: false
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: 'Patches an existing result'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/result'
+    delete:
+      tags:
+      - results
+      parameters:
+      - name: resultId
+        in: path
+        description: 'Result ID which to delete'
+        allowEmptyValue: false
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Deletes existing result
+    
+  /records:
+    get:
+      tags: 
+      - records
+      responses:
+        '200':
+          description: Returns all possible records
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/record'
+    post:
+      tags:
+      - records
+      responses:
+        '200':
+          description: 'Creates a new record'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/record'
+
+  /records/:recordId:
+    patch:
+      tags:
+      - records
+      parameters:
+      - name: recordId
+        in: path
+        description: 'Record ID which to patch'
+        allowEmptyValue: false
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: 'Patches an existing record'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/record'
+    delete:
+      tags:
+      - records
+      parameters:
+      - name: recordId
+        in: path
+        description: 'Record ID which to delete'
+        allowEmptyValue: false
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Deletes existing record
+components:
+  schemas:
+    user:
+      description: User schema
+      type: object
+      required:
+        - email
+        - hashedPassword
+        - name
+        - surname
+        - dateOfBirth
+      properties:
+        email:
+          type: string
+        hashedPassword:
+          type: string
+          format: password
+        name:
+          type: string
+        surname:
+          type: string
+        dateOfBirth:
+          type: string
+          format: date
+        level:
+          type: string
+          enum:
+            - user
+            - quizer
+            - moderator
+            - admin
+        id:
+          type: integer
+    quiz:
+      type: object
+      properties:
+        id:
+          description: 'ID of the specific quiz'
+          type: string
+        ownerId:
+          description: 'ID of user who created the quiz'
+          type: string
+        name:
+          description: 'Name for the specific quiz'
+          type: string
+        questions:
+          description: 'Array of IDs of all questions for this quiz, order of ID`s can be used as order of all questions'
+          type: array
+          items:
+            type: string
+    question:
+      type: object
+      properties:
+        question:
+          type: string
+        correct:
+          description: 'Array of IDs of correct answers'
+          type: array
+          items:
+            type: string
+        answers:
+          description: 'Array of possible answers as strings'
+          type: array
+          items:
+            type: string
+        type:
+          description: 'Type of the question'
+          type: string
+          enum:
+            - input
+            - checkbox
+            - radio
+            - textbox
+    result:
+      description: 'A collection of answers for a specific quiz for a specific response, (one attempt per quiz per person)'
+      type: object
+      properties:
+        id:
+          description: 'ID of a result'
+          type: string
+        recordIds:
+          description: 'List of all the records in order of them being answered'
+          type: array
+          items:
+            type: string
+        userId:
+          description: 'ID of a user who was filling in this response'
+          type: string
+        quizId:
+          description: 'ID of the quiz that user was filling in'
+          type: string
+    record:
+      description: 'An answer record for a specific question'
+      type: object
+      properties:
+        id:
+          description: 'ID of a record'
+          type: string
+        questionId:
+          description: 'ID of question that was answered'
+          type: string
+        answers:
+          description: 'Selected values from questions answers'
+          type: array
+          items:
+            type: string
+
+      
+      
+      
+      
