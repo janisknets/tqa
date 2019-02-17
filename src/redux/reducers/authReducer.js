@@ -1,6 +1,6 @@
 export default (state = {
-  isLoggedIn: false,
-  token: null,
+  isLoggedIn: !!localStorage.getItem('token'),
+  token: localStorage.getItem('token'),
   working: 0,
   err: null
 }, action) => {
@@ -13,10 +13,9 @@ export default (state = {
       }
     case 'POST_LOGIN_REJECTED':
     case 'POST_REGISTER_REJECTED':
-      console.log(action)
       return {
         ...state,
-        err: action.payload.response.data,
+        err: action.payload.response  && action.payload.response.data,
         status: (state.working > 0 ? state.working - 1 : 0)
       }
     case 'POST_REGISTER_FULFILLED':
@@ -27,6 +26,7 @@ export default (state = {
       }
     case 'POST_LOGIN_FULFILLED':
       const { token } = action.payload.data
+      localStorage.setItem('token', token)
       return {
         ...state,
         isLoggedIn: true,

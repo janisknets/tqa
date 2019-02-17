@@ -4,7 +4,7 @@ import store from 'redux/store'
 
 const getDefaultHeaders = () => {
   return {
-    Authorize: `Bearer ${store.getState().auth.token}`
+    Authorization: `Bearer ${store.getState().auth.token}`
   }
 }
 

@@ -5,6 +5,7 @@ import ProtectedRoute from 'react-router-protected-route'
 import Login from 'modules/login'
 import Register from 'modules/register'
 import Home from 'modules/home'
+import Quizes from 'modules/quizesList'
 
 class DefaultRouter extends React.Component {
   render () {
@@ -17,6 +18,12 @@ class DefaultRouter extends React.Component {
           redirectToPath="/login"
           path="/home"
           component={Home}
+        />
+        <ProtectedRoute
+          isAccessible={this.props.isLoggedIn}
+          redirectToPath="/login"
+          path="/quizes"
+          component={Quizes}
         />
         <Route path="/*" component={this.props.isLoggedIn ? Home : Login} />
       </Switch>
