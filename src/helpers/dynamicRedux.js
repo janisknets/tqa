@@ -83,7 +83,7 @@ class DynamicRedux {
       if (rejected.exec(action.type)) {
         return {
           ...state,
-          err: action.payload.response.data,
+          err: action.payload.response ? action.payload.response.data : action.payload,
           status: (state.working > 0 ? state.working - 1 : 0)
         }
       }

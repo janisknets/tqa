@@ -2,6 +2,7 @@ import React from 'react'
 import { Row, Col, Form, Button, Alert } from 'antd'
 
 import DecoratedInput from 'modules/decoratedInput'
+import AnswersList from './AnswersList'
 
 class QuestionComponent extends React.Component {
   render () {
@@ -12,13 +13,33 @@ class QuestionComponent extends React.Component {
         <Col offset={8} span={8} >
           <DecoratedInput form={this.props.form} label='Question' name='question' value={question.question} />
         </Col>
+      </Row>
+      <Row>
         <Col offset={8} span={8} >
-          <DecoratedInput form={this.props.form} label='Type' name='type' type='radio' options={['input', 'textarea', 'checkbox', 'radio']} />
+          <DecoratedInput form={this.props.form} onChange={this.props.onTypeChange}
+            label='Area' name='area' type='radio' options={['js', 'node', 'react']} />
+        </Col>
+      </Row>
+      <Row>
+        <Col offset={8} span={8} >
+          <DecoratedInput form={this.props.form} onChange={this.props.onTypeChange}
+            label='Complexity' name='complexity' type='radio' options={['easy', 'medium', 'hard']} />
+        </Col>
+      </Row>
+      <Row>
+        <Col offset={8} span={8} >
+          <DecoratedInput form={this.props.form} onChange={this.props.onTypeChange}
+            label='Type' name='type' type='radio' options={['input', 'textarea', 'checkbox', 'radio']} />
+        </Col>
+      </Row>
+      <Row>
+        <Col offset={8} span={8} >
+          <AnswersList type={this.props.type} form={this.props.form} />
         </Col>
       </Row>
       <Row>
         <Col offset={11} span={4} >
-          <Button type='primary' htmlType='submit' >{this.props.quiz ? 'Update' : 'Create'} Question</Button>
+          <Button type='primary' htmlType='submit' >{this.props.quiz ? 'Update ' : 'Create '} Question</Button>
         </Col>
       </Row>
     </Form>

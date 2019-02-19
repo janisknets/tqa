@@ -14,7 +14,6 @@ class CreateQuiz extends React.Component {
       if (this.props.match.params.quizId) {
         this.props.patchQuiz(this.props.match.params.quizId, values)
           .then((res) => {
-            console.log()
             this.props.history.push(`/quiz/${res.value.data._id}/questions`)
           })
         return;

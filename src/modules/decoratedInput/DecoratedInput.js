@@ -3,16 +3,20 @@ import { Input, Form, Radio, Checkbox } from 'antd'
 
 class DecoratedInput extends React.Component {
   getInputType = () => {
+    if (this.props.render) {
+      return this.props.render(this.props.type, this.props.form, this.props.options)
+    }
+
     switch (this.props.type) {
       case 'checkbox':
-        return <Checkbox.Group options={this.props.options} />
+        return <Checkbox.Group options={this.props.options} onChange={this.props.onChange} />
       case 'radio':
-        return <Radio.Group options={this.props.options} />
+        return <Radio.Group options={this.props.options} onChange={this.props.onChange} />
       case 'textarea':
-        return <Input.TextArea />
+        return <Input.TextArea onChange={this.props.onChange} />
       case 'input':
       default:
-        return <Input />
+        return <Input onChange={this.props.onChange} />
     }
   }
 
