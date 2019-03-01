@@ -29,7 +29,7 @@ class CreateQuiz extends React.Component {
     this.props.match.params.quizId && this.props.getQuiz(this.props.match.params.quizId)
   }
   render () {
-    const quiz = this.props.quizes[this.props.match.params.quizId]
+    const quiz = this.props.quizzes[this.props.match.params.quizId]
     return <QuizComponent onSubmit={this.onSubmit} quiz={quiz} />
   }
 }
@@ -44,7 +44,7 @@ const mapDispatchToProps = dispatch => {
 
 const mapStateToProps = state => {
   return {
-    quizes: state.quizes.values
+    quizzes: state.quizzes.values
   }
 }
 

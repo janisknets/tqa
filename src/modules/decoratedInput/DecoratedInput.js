@@ -1,5 +1,6 @@
 import React from 'react'
-import { Input, Form, Radio, Checkbox } from 'antd'
+import moment from 'moment'
+import { Input, Form, Radio, Checkbox, DatePicker } from 'antd'
 
 class DecoratedInput extends React.Component {
   getInputType = () => {
@@ -7,7 +8,11 @@ class DecoratedInput extends React.Component {
       return this.props.render(this.props.type, this.props.form, this.props.options)
     }
 
+    const dateFormat = 'DD/MM/YYYY'
+
     switch (this.props.type) {
+      case 'date':
+        return <DatePicker defaultValue={moment('01.01.1990', dateFormat)} format={dateFormat} />
       case 'checkbox':
         return <Checkbox.Group options={this.props.options} onChange={this.props.onChange} />
       case 'radio':

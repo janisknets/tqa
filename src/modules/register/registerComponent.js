@@ -29,7 +29,7 @@ class registerCompoment extends React.Component {
       </Row>
       <Row>
         <Col offset={8} span={8} >
-          <DecoratedInput form={this.props.form} label='Date of Birth' name='dateOfBirth' />
+          <DecoratedInput type='date' form={this.props.form} label='Date of Birth' name='dateOfBirth' />
         </Col>
       </Row>
       <Row>

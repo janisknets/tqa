@@ -12,10 +12,10 @@ const QuizComponent = ({quiz}) => <Card
   <p>{quiz.description}</p>
 </Card>
 
-const QuizListComponent = ({quizes}) => <div>
+const QuizListComponent = ({quizzes = []}) => <div>
   <div><Link to='/quizes/create'><Button>Add new Quiz</Button></Link></div>
   {
-    quizes.map((quiz,i) => <QuizComponent quiz={quiz} key={`quiz-${i}`}/> )
+    quizzes.map((quiz,i) => <QuizComponent quiz={quiz} key={`quiz-${i}`}/> )
   }
 </div>
 

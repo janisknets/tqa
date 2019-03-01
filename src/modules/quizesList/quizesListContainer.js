@@ -10,7 +10,7 @@ class QuizListContainer extends React.Component {
     this.props.getQuizes()
   }
   render () {
-    return <QuizListComponent quizes={this.props.quizes} />
+    return <QuizListComponent quizzes={this.props.quizzes} />
   }
 }
 
@@ -22,7 +22,7 @@ const mapDisptachToProps = dispatch => {
 
 const mapStateToProps = state => {
   return {
-    quizes: Object.values(state.quizes.values)
+    quizzes: Object.values(state.quizzes.values)
   }
 }
 

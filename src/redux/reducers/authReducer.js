@@ -4,6 +4,10 @@ export default (state = {
   working: 0,
   err: null
 }, action) => {
+  const payload = action.payload && action.payload.data && action.payload.data.payload
+  if (!payload) {
+    return state
+  }
   switch (action.type) {
     case 'POST_LOGIN_PENDING':
     case 'POST_REGISTER_PENDING':
@@ -15,7 +19,7 @@ export default (state = {
     case 'POST_REGISTER_REJECTED':
       return {
         ...state,
-        err: action.payload.response  && action.payload.response.data,
+        err: payload.response  && payload.response.data,
         status: (state.working > 0 ? state.working - 1 : 0)
       }
     case 'POST_REGISTER_FULFILLED':
@@ -25,7 +29,7 @@ export default (state = {
         status: (state.working > 0 ? state.working - 1 : 0)
       }
     case 'POST_LOGIN_FULFILLED':
-      const { token } = action.payload.data
+      const { token } = payload
       localStorage.setItem('token', token)
       return {
         ...state,

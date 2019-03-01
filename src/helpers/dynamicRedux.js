@@ -71,6 +71,7 @@ class DynamicRedux {
       if (action.type.indexOf(this.name) < 0 ) {
         return state
       }
+      let payload = action.payload && action.payload.data && action.payload.data.payload
       const pending = /.*_PENDING/;
       const rejected = /.*_REJECTED/;
       const fulfilled = /.*_FULFILLED/;
@@ -83,7 +84,7 @@ class DynamicRedux {
       if (rejected.exec(action.type)) {
         return {
           ...state,
-          err: action.payload.response ? action.payload.response.data : action.payload,
+          err: action.payload.error,
           status: (state.working > 0 ? state.working - 1 : 0)
         }
       }
@@ -91,10 +92,11 @@ class DynamicRedux {
         return state
       }
       if (action.type === `GET_${this.name}_ALL_FULFILLED`) {
-        // let values = {}
-        // state.values.forEach(x => values[x._id = {...x}])
         let values = { ...state.values }
-        action.payload.data.forEach(x => values[x._id] = {...x})
+        if (payload[this.baseURN]) {
+          payload = payload[this.baseURN]
+        }
+        payload.forEach(x => values[x._id] = {...x})
         return {
           ...state,
           status: (state.working > 0 ? state.working - 1 : 0),
@@ -113,7 +115,7 @@ class DynamicRedux {
         }
       } else if (action.type === `DELETE_${this.name}_FULFILLED`) {
         let values = { ...state.values}
-        const x = action.payload.data
+        const x = payload.data
         delete values[x._id]
         return {
           ...state,

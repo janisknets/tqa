@@ -24,12 +24,15 @@ export const register = (payload) => {
   const hashed =  SHA256(payload.password).toString()
   payload.hashedPassword = hashed
   delete payload.password
+
+  payload.dateOfBirth = payload.dateOfBirth.toISOString()
+
   const cfg = {
     method: 'post',
     url: 'auth/register',
     data: {
-      ...payload,
-      level: 'admin'
+      ...payload
+      // level: 'admin'
     }
   }
   return {
