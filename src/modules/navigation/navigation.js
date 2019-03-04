@@ -28,8 +28,8 @@ class Navigation extends Component {
         <Menu.Item key="/">
           <Link to='/'>Home</Link>
         </Menu.Item>
-        <Menu.Item key="quizes" >
-          <Link to='/quizes'>Questions</Link>
+        <Menu.Item key="quizzes" >
+          <Link to='/quizzes'>Quizzes</Link>
         </Menu.Item>
       </Menu>
     </React.Fragment>

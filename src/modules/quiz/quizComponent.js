@@ -1,5 +1,6 @@
 import React from 'react'
 import { Row, Col, Form, Button, Alert } from 'antd'
+import { Link } from 'react-router-dom'
 
 import DecoratedInput from 'modules/decoratedInput'
 
@@ -17,8 +18,11 @@ class QuizComponent extends React.Component {
         </Col>
       </Row>
       <Row>
-        <Col offset={11} span={4} >
-          <Button type='primary' htmlType='submit' >{this.props.quiz ? 'Update' : 'Create'} Quiz</Button>
+        <Col offset={10} span={2} >
+          <Link to='/quizzes'><Button>Back</Button></Link>
+        </Col>
+        <Col span={4} >
+          <Button type='primary' htmlType='submit' >{this.props.quiz ? 'Update ' : 'Create '} Quiz</Button>
         </Col>
       </Row>
     </Form>

@@ -25,7 +25,8 @@ class CreateQuestion extends React.Component {
         correct,
         type: values.type,
         area: values.area,
-        complexity: values.complexity
+        complexity: values.complexity,
+        quizId: this.props.match.params.quizId
       }
       // if (this.props.match.params.questionId) {
       //   this.props.patchQuestion(this.props.match.params.questionId, values)
@@ -34,11 +35,9 @@ class CreateQuestion extends React.Component {
       //     })
       //   return;
       // }
-
       this.props.postQuestion(payload)
         .then((res) => {
-          this.props.patchQuiz(this.props.params.quizId)
-          this.props.history.push(`/quizes/${this.props.params.quizId}/questions/${res.value.data._id}`)
+          this.props.history.push(`/quizzes/${this.props.params.quizId}/questions/${res.value.data._id}`)
         })
     })
   })

@@ -55,13 +55,6 @@ class createQuestionPres extends React.Component {
     }</Radio.Group>
   }
 
-  addAnswer = (e) => {
-    e.preventDefault()
-    let answers = this.state.answers.map(item => ({ ...item }));
-    answers.push('a')
-    this.setState({answers})
-  }
-
   render() {
     return <Form onSubmit={this.props.onSubmit}>
       <h2>Create new question</h2>
@@ -99,7 +92,7 @@ class createQuestionPres extends React.Component {
       </Form.Item>
       { this.getAnswers() }
       { this.props.form.getFieldValue('type') && this.props.form.getFieldValue('type') !== 'input' && <Form.Item>
-        <Button type="secondary" onClick={this.addAnswer} >Add Answer</Button>
+        <Button type="secondary" onClick={this.props.addAnswer} >Add Answer</Button>
       </Form.Item>
       }
       <Form.Item label="Code for the question (if required)">{
@@ -111,7 +104,7 @@ class createQuestionPres extends React.Component {
       }
       </Form.Item>
       <Form.Item>
-        <Button type="primary" htmlType="submit">Create Question</Button>
+        <Button type="primary" htmlType="submit">Create Question!</Button>
       </Form.Item>
     </Form>
   }

@@ -1,5 +1,6 @@
 import React from 'react'
 import { Row, Col, Form, Button, Alert } from 'antd'
+import { Link } from 'react-router-dom'
 
 import DecoratedInput from 'modules/decoratedInput'
 import AnswersList from './AnswersList'
@@ -8,6 +9,7 @@ class QuestionComponent extends React.Component {
   render () {
     const question = this.props.question || {}
     return <Form onSubmit={(e) => this.props.onSubmit(e, this.props.form)} >
+      <Link to='./' ><Button>To Questions list</Button></Link>
       {this.props.error && <Alert type="error" message={this.props.error}/>}
       <Row>
         <Col offset={8} span={8} >
@@ -39,7 +41,7 @@ class QuestionComponent extends React.Component {
       </Row>
       <Row>
         <Col offset={11} span={4} >
-          <Button type='primary' htmlType='submit' >{this.props.quiz ? 'Update ' : 'Create '} Question</Button>
+          <Button type='primary' htmlType='submit' >{this.props.quiz ? 'Update Question' : 'Create Question'}</Button>
         </Col>
       </Row>
     </Form>

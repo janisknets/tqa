@@ -11,12 +11,12 @@ class ProtectedRouter extends React.Component {
   render () {
     return <Switch>
       <Route path='/home' component={Home} />
-      <Route path='/quizes/:quizId/questions/create' component={Question} />
-      <Route path='/quizes/:quizId/questions/:questionId' component={Question} />
-      <Route path='/quizes/:quizId/questions' component={Questions} />
-      <Route path='/quizes/create' component={Quiz} />
-      <Route path='/quizes/:quizId' component={Quiz} />
-      <Route path='/quizes' component={Quizes} />
+      <Route path='/quizzes/:quizId/questions/create' component={Question} />
+      <Route path='/quizzes/:quizId/questions/:questionId' component={Question} />
+      <Route path='/quizzes/:quizId/questions' component={Questions} />
+      <Route path='/quizzes/create' component={Quiz} />
+      <Route path='/quizzes/:quizId' component={Quiz} />
+      <Route path='/quizzes' component={Quizes} />
       <Route path="/*" component={Home} />
     </Switch>
   }

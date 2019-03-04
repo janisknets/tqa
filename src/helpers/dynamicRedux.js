@@ -107,6 +107,12 @@ class DynamicRedux {
                  action.type === `PATCH_${this.name}_FULFILLED` ) {
         let values = Array.isArray(state.values) ? state.values[0] : { ...state.values}
         const x = action.payload.data
+        if (!x._id) {
+          return {
+            ...state,
+            status: (state.working > 0 ? state.working - 1 : 0),
+          }
+        }
         values[x._id] = {...x}
         return {
           ...state,
