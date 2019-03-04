@@ -28,16 +28,16 @@ class CreateQuestion extends React.Component {
         complexity: values.complexity,
         quizId: this.props.match.params.quizId
       }
-      // if (this.props.match.params.questionId) {
-      //   this.props.patchQuestion(this.props.match.params.questionId, values)
-      //     .then((res) => {
-      //       this.props.history.push(`/question/${res.value.data._id}/questions`)
-      //     })
-      //   return;
-      // }
+      if (this.props.match.params.questionId) {
+        this.props.patchQuestion(this.props.match.params.questionId, values)
+          .then((res) => {
+            this.props.history.push(`/quizzes/${this.props.match.params.quizId}/edit/questions`)
+          })
+        return;
+      }
       this.props.postQuestion(payload)
         .then((res) => {
-          this.props.history.push(`/quizzes/${this.props.params.quizId}/questions/${res.value.data._id}`)
+          this.props.history.push(`/quizzes/${this.props.match.params.quizId}/edit/questions`)
         })
     })
   })

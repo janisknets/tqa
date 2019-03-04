@@ -106,7 +106,7 @@ class DynamicRedux {
                  action.type === `POST_${this.name}_FULFILLED` ||
                  action.type === `PATCH_${this.name}_FULFILLED` ) {
         let values = Array.isArray(state.values) ? state.values[0] : { ...state.values}
-        const x = action.payload.data
+        const x = action.payload.data.payload[this.baseURN.substring(0, this.name.length - 1)]
         if (!x._id) {
           return {
             ...state,

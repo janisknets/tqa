@@ -18,19 +18,19 @@ class QuestionComponent extends React.Component {
       </Row>
       <Row>
         <Col offset={8} span={8} >
-          <DecoratedInput form={this.props.form} onChange={this.props.onTypeChange}
+          <DecoratedInput form={this.props.form} onChange={this.props.onTypeChange} value={question.area}
             label='Area' name='area' type='radio' options={['js', 'node', 'react']} />
         </Col>
       </Row>
       <Row>
         <Col offset={8} span={8} >
-          <DecoratedInput form={this.props.form} onChange={this.props.onTypeChange}
+          <DecoratedInput form={this.props.form} onChange={this.props.onTypeChange} value={question.complexity}
             label='Complexity' name='complexity' type='radio' options={['easy', 'medium', 'hard']} />
         </Col>
       </Row>
       <Row>
         <Col offset={8} span={8} >
-          <DecoratedInput form={this.props.form} onChange={this.props.onTypeChange}
+          <DecoratedInput form={this.props.form} onChange={this.props.onTypeChange} value={question.type}
             label='Type' name='type' type='radio' options={['input', 'textarea', 'checkbox', 'radio']} />
         </Col>
       </Row>
@@ -41,7 +41,7 @@ class QuestionComponent extends React.Component {
       </Row>
       <Row>
         <Col offset={11} span={4} >
-          <Button type='primary' htmlType='submit' >{this.props.quiz ? 'Update Question' : 'Create Question'}</Button>
+          <Button type='primary' htmlType='submit' >{this.props.question ? 'Update Question' : 'Create Question'}</Button>
         </Col>
       </Row>
     </Form>

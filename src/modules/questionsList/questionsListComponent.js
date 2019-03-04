@@ -5,7 +5,7 @@ import { Button, Card } from 'antd'
 const QuestionComponent = ({quizId, question, onClickDelete}) => <Card
     title={question.question}
     extra={<React.Fragment>
-        <Link to={`/quizzes/${quizId}/questions/${question._id}`}><Button>Edit</Button></Link>
+        <Link to={`/quizzes/${quizId}/edit/questions/${question._id}`}><Button>Edit</Button></Link>
         <Button type='danger' onClick={() => onClickDelete(question._id)} >Delete</Button>
       </React.Fragment>}
   >
@@ -15,7 +15,7 @@ const QuestionComponent = ({quizId, question, onClickDelete}) => <Card
 const QuestionsListComponent = ({questions = [], quizId, onClickDelete}) => <div>
   <div>
     <Link to={`/quizzes`} ><Button>Back to Quizzes</Button></Link>
-    <Link to={`/quizzes/${quizId}/questions/create`} ><Button>Add new Question</Button></Link>
+    <Link to={`/quizzes/${quizId}/edit/questions/create`} ><Button>Add new Question</Button></Link>
   </div>
   {
     questions.map((question,i) => <QuestionComponent quizId={quizId} onClickDelete={onClickDelete} question={question} key={`question-${i}`}/> )
